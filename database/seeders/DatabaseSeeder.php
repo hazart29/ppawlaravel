@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(1)->create();
+        \App\Models\User::create([
+            'name' => 'admin',
+            'username' => 'admin',
+            'password' => Hash::make('admin12345'),
+            'roles' => 'akademik',
+            'remember_token' => Str::random(10),
+        ]);
     }
 }
